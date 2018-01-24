@@ -1,0 +1,223 @@
+/****************************************
+ ----------------------------------------
+ * PADROES PRE ESTABELECIDOS DESTE LAYOUT *
+ ----------------------------------------
+ ****************************************/
+// links
+a {
+	&:link, &:visited, &:active, &:focus {
+		outline: 0;
+		color: $cor2;
+		text-decoration:none;
+	}
+	&:hover {
+		text-decoration:underline;
+	}
+}
+b, strong {
+	font-weight: bold;
+}
+u {
+	text-decoration: underline;
+}
+i, em {
+	font-style: italic;
+}
+s {
+	text-decoration: line-through;
+}
+// item de delete
+del {
+	display: none
+}
+// paragrafos
+p {
+	margin: 0 0 26px;
+}
+
+small {
+	font-size: 80%;
+}
+
+
+// titulos
+h1, h2, h3, h4, h5 {
+	line-height: 1.3;
+	display: block;
+}
+
+h1 {
+	font-size: 2.2em;
+	a {
+		color: inherit !important;
+		text-decoration:none !important;
+	}
+}
+h2 {
+	font-size: 1.9em;
+	a {
+		color: inherit !important;
+		text-decoration:none !important;
+	}
+}
+h3 {
+	font-size: 1.5em;
+	a {
+		color: inherit !important;
+		text-decoration:none !important;
+	}
+}
+h4 {
+	font-size: 1.25em;
+	a {
+		color: inherit !important;
+		text-decoration:none !important;
+	}
+}
+h5 {
+	font-size: 1em;
+	a {
+		color: inherit !important;
+		text-decoration:none !important;
+	}
+}
+
+// quote
+blockquote {
+	line-height: 1.4;
+	font-style: italic;
+}
+
+
+// video
+.video {
+	padding-bottom: 52.2%;
+	padding-top: 30px;
+	width: 100%;
+	font-size: 0;
+	position: relative;
+	overflow: hidden;
+
+	iframe, object, embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		
+		// padding-bottom: 2.5%
+	}
+}
+
+
+
+// caixas de texto e selects pra contato e afins
+input, select, textarea {
+	width: 100%;
+	margin-top: 20px;
+	vertical-align:middle;
+	white-space:normal;
+	background:none;
+	line-height:1;
+	display: block;
+	padding: 8px 10px;
+	outline: 0;
+	font-size: 11px;
+	font-family: $fonte-padrao;
+	font-style: italic;
+	color: $cor-padrao;
+	background: #fff;
+	border: 1px solid;
+	border-radius: 0;
+
+	&:focus {
+		outline:0;
+	}
+
+	&::placeholder {
+    	color: inherit;
+    }
+}
+
+input, textarea, button { -webkit-border-radius: 0; -webkit-appearance: none;}
+
+textarea {
+	height: 200px;
+	line-height: 1.65;
+}
+
+
+// botoes
+.btn, input[type=submit], button.btn, a.btn {
+	font-style: normal;
+	border: 0;
+	font-weight: normal;
+	display: inline-block;
+	text-align: center;
+	margin-top: 15px;
+	padding: 13px 20px;
+	line-height: 1;
+	background: $cor3;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: $cor1;
+	cursor: pointer;
+	font-family: $fonte-padrao;
+	-webkit-border-radius: 0; -webkit-appearance: none;
+	letter-spacing: 2px;
+
+	&:hover {
+		text-decoration: none;
+		opacity: 0.8;
+	}
+
+	&.claro {
+		background: $cor4;
+		color: $cor1;
+	}
+}
+
+
+// definicoes
+.clear {
+	clear: both;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/****************************************
+ ----------------------------------------
+ * PADRAO WORDPRESS *
+ ----------------------------------------
+ ****************************************/
+
+.alignnone, a img.alignnone {
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.aligncenter, a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.alignright, a img.alignright {
+    float:right;
+    margin-top: 5px;
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.alignleft, a img.alignleft {
+    float: left;
+    margin-top: 5px;
+    margin-left: 0;
+    margin-right: 20px;
+}
+

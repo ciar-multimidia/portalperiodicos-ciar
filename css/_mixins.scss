@@ -1,0 +1,35 @@
+/****************************************
+ ----------------------------------------
+ * PADRAO DE ITENS *
+ ----------------------------------------
+ ****************************************/
+@mixin flex($dir) {
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include flex-direction(row);
+    @include justify-content($dir);
+}
+
+%letterspacing {
+    letter-spacing: 0.1em;
+}
+
+%letterspacingmenor {
+    letter-spacing: 0.05em;
+}
+
+%textshadow {
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.12);
+}
+
+%textshadow-claro {
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.12);
+}
+
+%uppercase {
+    text-transform: uppercase;
+}
+
+%smallcaps {
+    font-variant: small-caps;
+}
