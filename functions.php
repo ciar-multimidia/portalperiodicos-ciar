@@ -10,6 +10,13 @@ function setup_theme() {
     // thumbnails
     add_theme_support( 'post-thumbnails' );
 
+    // suporte
+    add_theme_support( 'html5' );
+
+    // post formats
+    add_theme_support( 'post-formats', array('aside', 'link', 'gallery') );
+    add_post_type_support( 'page', 'post-formats' );
+
     // menus
     register_nav_menus( array(
       'menu-topo' => __( 'Menu global' )
@@ -21,13 +28,62 @@ function setup_theme() {
 
 
 // ========================================//
+// FORMATOS DE LAYOUT
+// ========================================// 
+function formatos_layout($translation, $text, $context, $domain) {
+    $names = array(
+        'Standard'  => 'Texto',
+        'Aside'  => 'Downloads',
+        'Link'  => 'Lista de links',
+        'Gallery'  => 'Menu categorização',
+    );
+    if ($context == 'Post format') {
+        $translation = str_replace(array_keys($names), array_values($names), $text);
+    }
+    return $translation;
+}
+add_filter('gettext_with_context', 'formatos_layout', 10, 4);
+
+function admin_css() {
+    ?>
+    <style>
+      @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+      #adminmenu .dashicons-admin-post:before {content: "\f464";}
+
+      .post-format-icon.post-format-standard:before, .post-state-format.post-format-standard:before, 
+      a.post-state-format.format-standard:before { font-family: 'FontAwesome'; content: "\f036"; top: 2px !important; }
+
+      .post-format-icon.post-format-aside:before, .post-state-format.post-format-aside:before, 
+      a.post-state-format.format-aside:before { font-family: 'FontAwesome'; content: "\f019"; top: 2px !important;}
+
+      .post-format-icon.post-format-link:before, .post-state-format.post-format-link:before, 
+      a.post-state-format.format-link:before { font-family: 'FontAwesome'; content: "\f0c1"; top: 2px !important;}
+
+      .post-format-icon.post-format-gallery:before, .post-state-format.post-format-gallery:before, 
+      a.post-state-format.format-gallery:before { font-family: 'FontAwesome'; content: "\f009"; top: 2px !important;}
+
+      body.post-type-post #formatdiv {display: none;} /*ocultar post-formats para publciacoes blog*/
+
+
+      /*colunas*/
+      #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {width: 175px;}
+      #wpcontent, #wpfooter {margin-left: 175px;}
+
+      /*painel do site*/
+      #toplevel_page_opcoes-site .dashicons-admin-generic:before { font-family: 'FontAwesome'; content: "\f015"; }
+    </style>
+    <?php
+}
+add_action( 'admin_head', 'admin_css' );
+
+
+// ========================================//
 // ESTILOS E SCRIPTS
 // ========================================// 
 function estilos_scripts() {  
   wp_enqueue_style('googlefonts', '//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|Yanone+Kaffeesatz:400,700', array(), '' , 'screen', false);
-
+  wp_enqueue_style('fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '' , 'screen', false);
   wp_enqueue_style('layout', get_template_directory_uri() . '/css/layout.css', array(), '', 'all', null);
-
 } 
 add_action( 'wp_enqueue_scripts', 'estilos_scripts', 1 );
 
@@ -52,14 +108,17 @@ function custom_menus(){
   global $menu;
   global $submenu;
 
-  $menu[5][0] = 'Notícias';
+  $menu[2][0] = 'Painel Wordpress';
+  $menu[5][0] = 'Publicações';
   $menu[10][0] = 'Biblioteca mídia';
+  $menu[20][0] = 'Páginas internas';
 
   unset($submenu['themes.php'][6]); // remove customize
   unset($submenu['themes.php'][8]); // remove editor
 
   remove_menu_page('tools.php');
   remove_submenu_page('themes.php','theme-editor.php');
+  remove_submenu_page('edit.php?post_type=ciarpainel','post-new.php?post_type=ciarpainel');
   
   // remove_menu_page( 'edit.php?post_type=acf-field-group' );  // Advance custom fields 
 }
@@ -72,6 +131,22 @@ function remover_personalizar() {
 }
 add_action( 'wp_before_admin_bar_render', 'remover_personalizar' );
 
+
+// ========================================//
+// OPCOES ADMIN
+// ========================================// 
+if( function_exists('acf_add_options_page') ) {
+  
+  acf_add_options_page(array(
+    'page_title'  => 'Gestão de informações gerais do site',
+    'menu_title'  => 'Painel do Site',
+    'menu_slug'   => 'opcoes-site',
+    'capability'  => 'upload_plugins',
+    'position'    => 3,
+    'redirect'    => false
+  ));
+  
+}
 
 
 // ========================================//

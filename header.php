@@ -14,10 +14,10 @@
 			<a href="http://www.ufg.br" target="_blank">Portal da Universidade Federal de Goiás</a>
 
 			<div class="redes">
-				<a href="#"><i class="icon-facebook" aria-hidden="true"></i> <span>Facebook</span></a>
-				<a href="#"><i class="icon-instagram" aria-hidden="true"></i> <span>Instagram</span></a>
-				<a href="#"><i class="icon-twitter" aria-hidden="true"></i> <span>Twitter</span></a>
-				<a href="#"><i class="icon-graduation-cap" aria-hidden="true"></i> <span>ResearchGate</span></a>
+				<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> <span>Facebook</span></a>
+				<a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> <span>Instagram</span></a>
+				<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> <span>Twitter</span></a>
+				<a href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <span>ResearchGate</span></a>
 			</div>
 		</div>
 	</div>
@@ -45,7 +45,6 @@
 		'depth' => 0, 
 		'walker' => ''
 	)); ?>	
-	<li><div class="buscaportal"><?php echo get_search_form(); ?><i class="icon-search" aria-hidden="true"></i></a></div>
-	</li>
+	<li><div class="buscaportal"><?php echo get_search_form(); ?><i class="fa fa-search" aria-hidden="true"></i></a></div></li>
 	</ul>
 </nav>

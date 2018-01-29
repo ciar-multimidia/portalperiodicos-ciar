@@ -1,6 +1,6 @@
 // CORES VARIAVEIS
-$cor-padrao: #222;
-
+$cor-padrao: #555;
+$fundo: #f4f4f4; // cinza
 $cor1: #550000; // marrom
 $cor2: #b41218; // vermelho
 $cor3: #f16a22; // laranja
@@ -17,7 +17,6 @@ $fonte-icones: "FontAwesome";
 @import "reset";
 @import "predefinicoes";
 @import "mixins";
-@import "fontello";
 @charset "UTF-8";
 
 /****************************************
@@ -32,7 +31,6 @@ body {
 	font-style: normal;
 	font-size: 15px;
 	line-height: 1.65;
-	min-height: 100vh;
 	color: $cor-padrao;
 	font-family: $fonte-padrao;
 }
@@ -53,8 +51,8 @@ body {
 	.barra-superior {
 		width: 100%;
 		background: $cor1 url('../img/pattern.gif') repeat-x center bottom;
-		color: lighten($cor4,15%);
-		padding: 6px 0 8px;
+		color: desaturate(lighten($cor4,28%),25%);
+		padding: 12px 0 16px;
 		font-size: 0.9em;
 		
 		.container {
@@ -93,7 +91,7 @@ body {
 
 			& > a, .buscaportal {
 				display: inline-block;
-				color: $cor3;
+				color: $cor-padrao;
 				padding: 0 15px;
 				line-height: 40px;
 				font-size: 1em;
@@ -104,7 +102,7 @@ body {
 
 			&:hover {
 				background: $cor1;
-				& > a, .buscaportal {color: lighten($cor4,15%); text-decoration: none;}
+				& > a, .buscaportal {color: #fff; text-decoration: none;}
 			}
 
 			&:hover .sub-menu {left: 0; opacity: 1}
@@ -133,7 +131,7 @@ body {
 					a {
 						padding: 10px 16px;
 						line-height: 1;
-						color: lighten($cor4,15%);
+						color: #fff;
 						font-size: 0.85em;
 						display: block;
 						text-transform: none;
@@ -179,13 +177,12 @@ body {
 #slider {
 	width: 100%;
 	height: 365px;
-	background: $cor1;
 	margin: 15px 0 0;
 
 	.container {
 		padding: 0;
 		height: 365px;
-		background: transparentize(#fff,0.1);
+		background: $fundo;
 	}
 }
 
@@ -194,22 +191,24 @@ body {
 #buscaojs {
 	width: 100%;
 	padding: 30px;
-	background: $cor4;
+	// background: url('../img/pattern.gif') repeat-x center bottom, url('../img/pattern.gif') repeat-x center top, lighten(desaturate($cor4,10%),8%);
+	background: lighten(desaturate($cor4,10%),8%);
 
 	.container {
 		h1 {
 			width: 100%;
 			text-align: center;
 			font-family: $fonte-titulo;
+			color: $cor1;
 		}
 
 		.formulario {
 			width: 100%;
 			margin-top: 15px;
-			@include flex(space-between);
+			text-align: right;
 
 			form {
-				@include flex-grow(1);
+				width: 100%;
 				input {
 					width: 100%;
 					margin-top: 0;
@@ -224,21 +223,122 @@ body {
 			}
 
 			a.avancada {
-				margin-left: 20px;
-				padding: 10px 20px;
-				font-size: 1.3em;
-				line-height: 1.2;
-				background: $cor1;
-				border-radius: 10px;
-				border: 4px solid darken($cor4,8%);
-				color: #fff;
 				display: inline-block;
+				
+				color: $cor1;
+				font-style: italic;
+				text-decoration: underline;
 			}
 
 		}
 	}
 }
 
+
+////////////////////////////// BOXES
+.boxes {
+	margin-top: 80px;
+	margin-bottom: 40px;
+	@include flex(center);
+
+	.box {
+		margin: 15px;
+		background: $fundo;
+		border: 1px solid $fundo;
+		padding: 50px 15px 15px;
+		position: relative;
+		@include transition(border-color 0.3s ease-in-out);
+
+
+		.icone {
+			width: 80px;
+			height: 80px;
+			position: absolute;
+			top: -40px;
+			left: 50%;
+			background: $cor1;
+			border-radius: 50%;
+			@include transform(translateX(-50%));
+			@include transition(background 0.3s ease-in-out);
+
+			i {
+				line-height: 80px;
+				text-align: center;
+				color: #fff;
+				font-size: 40px;
+				display: block;
+			}
+		}
+
+		h2 {
+			font-size: 1.4em;
+			text-align: center;
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		p {margin: 0; text-align: center}
+
+		a {
+			position: absolute;
+			top: 0; left: 0;
+			width: 100%; height: 100%;
+			display: block;
+		}
+
+		&:hover {
+			border-color: lighten(desaturate($cor4,10%),8%);
+			.icone {background: lighten(desaturate($cor3,10%),4%)}
+		}
+	}
+
+	&.semicon .box { padding-top: 15px; }
+	&.col3 .box { width: calc(33.33% - 30px); }
+	&.col4 .box { width: calc(25% - 30px); }
+	&.col5 .box { width: calc(20% - 30px); }
+}
+
+
+////////////////////////////// RODAPE
+#rodapesite {
+	background: $cor1 url('../img/pattern.gif') repeat-x center top;
+	color: desaturate(lighten($cor4,28%),25%);
+
+	.container {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		@include flex(space-between);
+		@include flex-wrap(nowrap);
+
+		& > div {@include align-self(center);}
+		
+		.info {
+			width: 60%;
+			p {margin-bottom: 0;}
+		}
+
+		.marcaufg {
+			width: 155px;
+		}
+	}
+
+	.creditos {
+		text-align: center;
+		padding: 12px 0;
+		margin-top: 10px;
+		background: darken($cor1,3%);
+		font-size: 11px;
+		text-transform: uppercase;
+		color: transparentize(desaturate(lighten($cor4,28%),25%),0.3);
+		@extend %letterspacing;
+
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+	}
+}
+		
 
 /****************************************
  ----------------------------------------
