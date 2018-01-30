@@ -29,7 +29,7 @@ html, body {overflow-x: hidden;}
 body {
 	font-weight: 400;
 	font-style: normal;
-	font-size: 15px;
+	font-size: 16px;
 	line-height: 1.65;
 	color: $cor-padrao;
 	font-family: $fonte-padrao;
@@ -88,6 +88,7 @@ body {
 			cursor: pointer;
 			border-radius: 5px;
 			background: #fff;
+			border: 2px solid #fff;
 
 			& > a, .buscaportal {
 				display: inline-block;
@@ -100,12 +101,16 @@ body {
 				letter-spacing: 0.07em;
 			}
 
+			&.current-menu-item {
+				a {color: $cor3;}
+			}
+
 			&:hover {
 				background: $cor1;
 				& > a, .buscaportal {color: #fff; text-decoration: none;}
 			}
 
-			&:hover .sub-menu {left: 0; opacity: 1}
+			&:hover .sub-menu {left: -2px; opacity: 1}
 
 			.sub-menu {
 				position: absolute;
@@ -114,10 +119,10 @@ body {
 				left: -9999px;
 				z-index: 10;
 				background: $cor1;
-				width: auto;
+				border: 2px solid #fff;
 				border-top: 0;
+				width: auto;
 				opacity: 0;
-				font-size: 1.3em;
 				// @include transition(opacity 0.2s ease-in-out);
 
 				li {
@@ -130,9 +135,8 @@ body {
 
 					a {
 						padding: 10px 16px;
-						line-height: 1;
+						line-height: 1.4;
 						color: #fff;
-						font-size: 0.85em;
 						display: block;
 						text-transform: none;
 						font-weight: 400;
@@ -194,6 +198,10 @@ body {
 	// background: url('../img/pattern.gif') repeat-x center bottom, url('../img/pattern.gif') repeat-x center top, lighten(desaturate($cor4,10%),8%);
 	background: lighten(desaturate($cor4,10%),8%);
 
+	&.paginternas {
+		background: lighten(desaturate($cor4,10%),8%) url('../img/pattern2.gif') repeat-x center top;
+	}
+
 	.container {
 		h1 {
 			width: 100%;
@@ -237,12 +245,12 @@ body {
 
 ////////////////////////////// BOXES
 .boxes {
-	margin-top: 80px;
+	margin-top: 30px;
 	margin-bottom: 40px;
 	@include flex(center);
 
 	.box {
-		margin: 15px;
+		margin: 50px 15px 15px;
 		background: $fundo;
 		border: 1px solid $fundo;
 		padding: 50px 15px 15px;
@@ -292,10 +300,117 @@ body {
 		}
 	}
 
-	&.semicon .box { padding-top: 15px; }
+	&.semicon .box { 
+		padding-top: 15px; 
+
+		.icone {display: none;}
+	}
+	&.col2 .box { width: calc(50% - 30px); }
 	&.col3 .box { width: calc(33.33% - 30px); }
 	&.col4 .box { width: calc(25% - 30px); }
 	&.col5 .box { width: calc(20% - 30px); }
+}
+
+
+
+////////////////////////////// CONTEUDO INTERNO
+
+#conteudo-interno {
+	margin-top: 25px;
+	margin-bottom: 25px;
+
+	header {
+		background: $cor1;
+		position: relative;
+		padding: 20px 0 0;
+
+		&:before {
+			width: 150vw;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			@include transform(translateX(-50%));
+			background: $cor1;
+			content: "";
+		}
+
+		h1 {
+			background: #fff;
+			margin-top: 20px;
+			display: block;
+			text-align: center;
+			position: relative;
+			padding: 20px;
+			border-radius: 5px 5px 0 0;
+		}
+	}
+
+	article {
+		margin: 25px auto ;
+		width: 800px;
+		max-width: 100%;
+	}
+}
+
+
+////////////////////////////// LISTAGEM ARTIGOS
+.lista-artigos {
+	width: 100%;
+	@include flex(center);
+
+	.item {
+		width: calc(33.33% - 30px);
+		margin: 30px 15px 0;
+		position: relative;
+
+		.thumb {
+			width: 100%;
+			height: 220px;
+			margin-bottom: 15px;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			@include transition(opacity 0.3s ease-in-out);
+
+			// &.type-page {display: none;}
+		}
+
+		h2 {
+			font-size: 1.2em;
+			@include transition(color 0.3s ease-in-out);
+		}
+
+		a {
+			position: absolute;
+			top: 0; left: 0;
+			width: 100%; height: 100%;
+			display: block;
+		}
+
+		&:hover {
+			h2 {color: $cor2;}
+			.thumb {opacity: 0.8;}
+		}
+
+		article {
+			margin: 20px 0 0 0 !important;
+		}
+	}
+}
+
+
+////////////////////////////// BREADCRUMB
+.breadcrumb {
+	color: desaturate(lighten($cor4,28%),25%);
+	position: relative;
+	font-size: 11px;
+	text-transform: uppercase;
+	@extend %letterspacing;
+
+	a {color: inherit; text-decoration: underline; display: inline-block;}
+
+	li {display: inline-block; margin: 0 10px 0 0;}
 }
 
 
@@ -303,6 +418,10 @@ body {
 #rodapesite {
 	background: $cor1 url('../img/pattern.gif') repeat-x center top;
 	color: desaturate(lighten($cor4,28%),25%);
+
+	&.paginternas {
+		background: $cor1;
+	}
 
 	.container {
 		padding-top: 20px;
@@ -314,6 +433,7 @@ body {
 		
 		.info {
 			width: 60%;
+			h3 {color: inherit;}
 			p {margin-bottom: 0;}
 		}
 

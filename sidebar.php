@@ -1,1 +1,0 @@
-<aside class="col-menor"></aside>

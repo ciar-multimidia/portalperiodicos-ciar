@@ -1,4 +1,9 @@
-<?php get_header(); ?>
-	asasd
+<?php get_header(); 
 
-<?php get_footer(); ?>
+if (have_posts()) : while (have_posts()) : the_post(); 
+	
+	get_template_part('content');
+
+endwhile; else : endif; 
+
+get_footer(); ?>
