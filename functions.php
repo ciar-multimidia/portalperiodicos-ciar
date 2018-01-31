@@ -43,6 +43,10 @@ function setup_theme() {
 }
 
 
+// post type revistas
+require_once(get_template_directory().'/func/type-revistas.php' );
+
+
 // ========================================//
 // CUSTOM DASHBOARD ITENS
 // ========================================// 
@@ -115,30 +119,30 @@ function admin_css() { ?>
       #adminmenu .dashicons-admin-post:before {content: "\f464";}
 
       .post-format-icon.post-format-standard:before, .post-state-format.post-format-standard:before, 
-      a.post-state-format.format-standard:before { font-family: 'FontAwesome'; content: "\f036"; top: 2px !important; }
+      a.post-state-format.format-standard:before { font-family: 'FontAwesome' !important; content: "\f036"; top: 2px !important; }
 
       .post-format-icon.post-format-aside:before, .post-state-format.post-format-aside:before, 
-      a.post-state-format.format-aside:before { font-family: 'FontAwesome'; content: "\f019"; top: 2px !important;}
+      a.post-state-format.format-aside:before { font-family: 'FontAwesome' !important; content: "\f019"; top: 2px !important;}
 
       .post-format-icon.post-format-link:before, .post-state-format.post-format-link:before, 
-      a.post-state-format.format-link:before { font-family: 'FontAwesome'; content: "\f0c1"; top: 2px !important;}
+      a.post-state-format.format-link:before { font-family: 'FontAwesome' !important; content: "\f0c1"; top: 2px !important;}
 
       .post-format-icon.post-format-gallery:before, .post-state-format.post-format-gallery:before, 
-      a.post-state-format.format-gallery:before { font-family: 'FontAwesome'; content: "\f009"; top: 2px !important;}
+      a.post-state-format.format-gallery:before { font-family: 'FontAwesome' !important; content: "\f009"; top: 2px !important;}
 
       .post-format-icon.post-format-image:before, .post-state-format.post-format-image:before, 
-      a.post-state-format.format-image:before { font-family: 'FontAwesome'; content: "\f03a"; top: 2px !important;}
+      a.post-state-format.format-image:before { font-family: 'FontAwesome' !important; content: "\f03a"; top: 2px !important;}
 
       body.post-type-post #formatdiv {display: none;} /*ocultar post-formats para publciacoes blog*/
 
 
-      /*colunas*/
-      #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {width: 175px;}
-      #wpcontent, #wpfooter {margin-left: 175px;}
-
       /*painel do site*/
       .dashicons-dashboard:before { font-family: 'FontAwesome'; content: "\f015"; }
       #toplevel_page_opcoes-site .dashicons-admin-generic:before { content: "\f226"; }
+
+      /*painel das revistas*/
+      body.post-type-revistasufg #wp-admin-bar-archive,
+      body.post-type-revistasufg .row-actions span.view {display: none;}
     </style>
 <?php }
 add_action( 'admin_head', 'admin_css' );
@@ -326,3 +330,27 @@ function publicacoes_relacionadas() {
 }
 
 
+
+
+// ========================================//
+// LIMPANDO MENU DE PAGINAS INTERNAS
+// ========================================// 
+function navegacao_paginas_internas() { 
+
+  // creditos: http://www.wpbeginner.com/wp-tutorials/how-to-display-a-list-of-child-pages-for-a-parent-page-in-wordpress/
+ 
+  global $post; 
+  $pai = wp_get_post_parent_id( $post->ID );
+   
+  if ( is_page() && $post->post_parent )
+      $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0' );
+  else
+      $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
+
+  if ( $childpages ) {
+      $string = '<div class="navegacao-interna">Navegue:&nbsp; '.$childpages.'</div>';
+  }
+   
+  return $string;
+ 
+}

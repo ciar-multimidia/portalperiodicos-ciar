@@ -413,6 +413,34 @@ body {
 	li {display: inline-block; margin: 0 10px 0 0;}
 }
 
+.navegacao-interna {
+	width: 100%;
+	text-align: center;
+	font-size: 11px;
+    text-transform: uppercase;
+    @extend %letterspacing;
+    font-weight: bold;
+
+	li, ul {display: inline-block; list-style-type: none;}
+	li {
+		&:before {
+			content: "|";
+			margin: 0 8px;
+			display: inline-block;
+		}
+
+		a {color: initial;}
+
+		&.current_page_item {
+			a {color: $cor2;}
+
+			li a {color: initial;}
+		}
+	}
+
+	& > li:first-child:before {display: none;}
+}
+
 
 ////////////////////////////// RODAPE
 #rodapesite {
