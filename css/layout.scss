@@ -130,6 +130,7 @@ body {
 					width: 190px;
 					background: transparent;
 					text-align: left;
+					border: 0;
 
 					&:first-child {border: 0;}
 
@@ -200,6 +201,7 @@ body {
 
 	&.paginternas {
 		background: lighten(desaturate($cor4,10%),8%) url('../img/pattern2.gif') repeat-x center top;
+		margin-top: 80px;
 	}
 
 	.container {
@@ -350,6 +352,36 @@ body {
 		margin: 25px auto ;
 		width: 800px;
 		max-width: 100%;
+	    text-align: justify;
+	    hyphens: auto;
+
+		ul, ol {
+			list-style: none;
+			counter-reset: section;
+			// margin-bottom: 30px;
+
+			li {
+				&:before {
+					content: "\2022";
+					color: inherit;
+					margin-right: 10px;
+					display: inline-block;
+					vertical-align: middle;
+				}
+			}
+		}
+		ol {
+			li:before {
+				counter-increment: section;
+				content: counter(section) ")";
+				font-family: $fonte-padrao;
+				padding-right: 0;
+				display: inline-block;
+				font-weight: 700;
+				font-size: inherit;
+				vertical-align: baseline;
+			}
+		}
 	}
 }
 
@@ -400,6 +432,33 @@ body {
 }
 
 
+
+////////////////////////////// LISTAGEM REVISTA
+.titulo-taxonomia {margin-top: 30px; margin-bottom: 20px; font-weight: bold;}
+.revista {
+	width: 100%; margin-bottom: 25px;
+	@include flex(space-between);
+
+	.capa {
+		width: 125px;
+	}
+
+	.info {
+		width: calc(100% - 145px);
+
+		h5 {
+			font-size: 1.1em;
+			font-weight: bold;
+		}
+
+		article {
+			margin: 0 !important;
+		}
+	}
+}
+
+
+
 ////////////////////////////// BREADCRUMB
 .breadcrumb {
 	color: desaturate(lighten($cor4,28%),25%);
@@ -423,7 +482,7 @@ body {
 
 	li, ul {display: inline-block; list-style-type: none;}
 	li {
-		&:before {
+		&:after {
 			content: "|";
 			margin: 0 8px;
 			display: inline-block;
@@ -438,7 +497,8 @@ body {
 		}
 	}
 
-	& > li:first-child:before {display: none;}
+	& > li:first-child:after,
+	& > li:last-child:after {display: none;}
 }
 
 

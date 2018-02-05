@@ -178,6 +178,55 @@ function reticencias( $more ) { return '...'; }
 function num_palavras_resumo( $length ) { return 52; }
 
 
+
+
+// ========================================//
+// LISTAGEM DE REVISTAS POR TAXONOMIA
+// ========================================// 
+function mostra_taxonomia($tax,$sentido) {
+    // creditos: https://code.tutsplus.com/tutorials/taxonomy-archives-list-posts-by-taxonomys-terms--cms-20045
+    global $post;
+
+    $terms = get_terms( $tax, array(
+        'orderby'    => 'name',
+        'order' => $sentido,
+        'hide_empty' => 0
+    ) );
+
+    foreach( $terms as $term ) {
+     
+        $args = array(
+            'post_type' => 'revistasufg',
+            'orderby'    => 'name',
+            'order' => $sentido,
+            $tax => $term->slug
+        );
+
+        $query = new WP_Query($args);
+                           
+        echo'<h4 class="titulo-taxonomia">' . $term->name . '</h4>';
+         
+        while ( $query->have_posts() ) : $query->the_post(); loop_revista(); endwhile; wp_reset_postdata();
+    }
+}
+
+
+function loop_revista() { global $post; ?>
+    <div class="revista">
+      <?php if( have_rows('revista_informacoes') ): while( have_rows('revista_informacoes') ): the_row(); ?>
+        <div class="capa"><a href="<?php echo esc_url(get_sub_field('link')); ?>" target="blank"><img src="<?php echo get_sub_field('capa'); ?>"></a></div>
+        <div class="info">
+          <h5><a href="<?php echo esc_url(get_sub_field('link')); ?>" target="blank"><?php the_title() ?></a></h5>
+          <article>
+            <?php echo get_sub_field('descricao'); ?>
+            <p><a href="<?php echo esc_url(get_sub_field('link')); ?>" class="btn" target="blank">Ver revista</a></p>
+          </article>
+        </div>
+      <?php endwhile; endif; ?>
+    </div>
+<?php }
+
+
 // ========================================//
 // SEGURANCA
 // ========================================// 
@@ -213,24 +262,8 @@ function envolve_embed($html, $url, $attr, $post_id) {
 // THUMB
 // ========================================// 
 function thumb_url($size) {
-    // $attachment = get_children(
-    //     array(
-    //         'post_parent'    => get_the_ID(),
-    //         'post_type'      => 'attachment',
-    //         'post_mime_type' => 'image',
-    //         'order'          => 'DESC',
-    //         'numberposts'    => 1,
-    //     )
-    // );
-    // if ( ! is_array( $attachment ) || empty( $attachment ) ) {
-    //     return;
-    // }
-    // $attachment = current( $attachment );
-
     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID),$size); 
     $url = $thumb['0'];
-
-    // if (has_post_thumbnail($post->ID)) { echo $url; } else { echo wp_get_attachment_url( $attachment->ID,$size); }    
     echo $url;
 }
 
@@ -331,7 +364,6 @@ function publicacoes_relacionadas() {
 
 
 
-
 // ========================================//
 // LIMPANDO MENU DE PAGINAS INTERNAS
 // ========================================// 
@@ -340,7 +372,10 @@ function navegacao_paginas_internas() {
   // creditos: http://www.wpbeginner.com/wp-tutorials/how-to-display-a-list-of-child-pages-for-a-parent-page-in-wordpress/
  
   global $post; 
-  $pai = wp_get_post_parent_id( $post->ID );
+  // $pai = wp_get_post_parent_id( $post->ID );
+  $parent_post = wp_get_post_parent_id($post->ID);
+  $parent_name = get_the_title($parent_post);
+  $parent_link = get_the_permalink($parent_post);
    
   if ( is_page() && $post->post_parent )
       $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0' );
@@ -348,7 +383,7 @@ function navegacao_paginas_internas() {
       $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
 
   if ( $childpages ) {
-      $string = '<div class="navegacao-interna">Navegue:&nbsp; '.$childpages.'</div>';
+      $string = '<div class="navegacao-interna">Mais sobre <a href="'.$parent_link.'">'.$parent_name.'</a>:&nbsp; '.$childpages.'</div>';
   }
    
   return $string;
