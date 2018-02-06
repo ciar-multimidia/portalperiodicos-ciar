@@ -30,8 +30,8 @@ s {
 del {
 	display: none
 }
-// paragrafos
-p, ul, ol {
+// espacamento entre formatacoes de conteudo
+p, ul, ol, .wp-block-cover-image, .wp-block-image, .video {
 	margin: 0 0 26px;
 }
 

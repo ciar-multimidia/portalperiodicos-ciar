@@ -22,13 +22,28 @@
 		        'orderby' => 'title'
 		    );
 		    $my_query = new  WP_Query( $args ); while ( $my_query->have_posts() ) : $my_query->the_post();
-		    loop_revista();
+			    if( have_rows('revista_informacoes') ): while( have_rows('revista_informacoes') ): the_row();
+				    loop_revista();
+			    endwhile; endif;
 		    endwhile; wp_reset_postdata();
 		} 
 
-		if(get_field('revistas_ordem') == 'unidade acadêmica' ) { mostra_taxonomia('revistasunidades',$sentido); }
-		if(get_field('revistas_ordem') == 'área de conhecimento' ) { mostra_taxonomia('revistasareas',$sentido); }
-		if(get_field('revistas_ordem') == 'ano de publicação' ) { mostra_taxonomia('revistasanos',$sentido); }
+		elseif(get_field('revistas_ordem') == 'unidade acadêmica' ) { mostra_taxonomia('revistasunidades',$sentido); }
+		elseif(get_field('revistas_ordem') == 'área de conhecimento' ) { mostra_taxonomia('revistasareas',$sentido); }
+		elseif(get_field('revistas_ordem') == 'ano de publicação' ) { mostra_taxonomia('revistasanos',$sentido); }
+		elseif(get_field('revistas_ordem') == 'incubados') { 
+		    $args = array( 
+		        'post_type' => 'revistasufg', 
+		        'posts_per_page' => -1,
+		        'order' => $sentido,
+		        'orderby' => 'title'
+		    );
+		    $my_query = new  WP_Query( $args ); while ( $my_query->have_posts() ) : $my_query->the_post();
+			    if( have_rows('revista_informacoes') ): while( have_rows('revista_informacoes') ): the_row();
+				    if(get_sub_field('incubado') == 1): loop_revista(); endif;
+			    endwhile; endif;		    
+		    endwhile; wp_reset_postdata(); 
+		}
 
 	} elseif ( has_post_format('link') ) { // listagem de links
 

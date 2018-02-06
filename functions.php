@@ -133,7 +133,8 @@ function admin_css() { ?>
       .post-format-icon.post-format-image:before, .post-state-format.post-format-image:before, 
       a.post-state-format.format-image:before { font-family: 'FontAwesome' !important; content: "\f03a"; top: 2px !important;}
 
-      body.post-type-post #formatdiv {display: none;} /*ocultar post-formats para publciacoes blog*/
+      body.post-type-post #formatdiv,
+      body.post-type-post .editor-post-format {display: none;} /*ocultar post-formats para publciacoes blog*/
 
 
       /*painel do site*/
@@ -206,14 +207,17 @@ function mostra_taxonomia($tax,$sentido) {
                            
         echo'<h4 class="titulo-taxonomia">' . $term->name . '</h4>';
          
-        while ( $query->have_posts() ) : $query->the_post(); loop_revista(); endwhile; wp_reset_postdata();
+        while ( $query->have_posts() ) : $query->the_post(); 
+          if( have_rows('revista_informacoes') ): while( have_rows('revista_informacoes') ): the_row();
+            loop_revista(); 
+          endwhile; endif;
+        endwhile; wp_reset_postdata();
     }
 }
 
 
 function loop_revista() { global $post; ?>
     <div class="revista">
-      <?php if( have_rows('revista_informacoes') ): while( have_rows('revista_informacoes') ): the_row(); ?>
         <div class="capa"><a href="<?php echo esc_url(get_sub_field('link')); ?>" target="blank"><img src="<?php echo get_sub_field('capa'); ?>"></a></div>
         <div class="info">
           <h5><a href="<?php echo esc_url(get_sub_field('link')); ?>" target="blank"><?php the_title() ?></a></h5>
@@ -222,7 +226,6 @@ function loop_revista() { global $post; ?>
             <p><a href="<?php echo esc_url(get_sub_field('link')); ?>" class="btn" target="blank">Ver revista</a></p>
           </article>
         </div>
-      <?php endwhile; endif; ?>
     </div>
 <?php }
 

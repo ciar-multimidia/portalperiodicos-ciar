@@ -355,7 +355,7 @@ body {
 	    text-align: justify;
 	    hyphens: auto;
 
-		ul, ol {
+		ul:not(.wp-block-gallery), ol:not(.wp-block-gallery) {
 			list-style: none;
 			counter-reset: section;
 			// margin-bottom: 30px;
@@ -382,6 +382,7 @@ body {
 				vertical-align: baseline;
 			}
 		}
+
 	}
 }
 
