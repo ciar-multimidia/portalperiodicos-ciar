@@ -62,7 +62,7 @@
 			<?php if( have_rows('downloads') ): ?>
 				<ul>
 					<?php while( have_rows('downloads') ): the_row(); ?>
-						<li><a href="<?php echo esc_url(get_sub_field('arquivo')); ?>" title="<?php echo get_sub_field('descricao') ?>" target="blank"><?php echo get_sub_field('nome') ?></a><?php if(get_sub_field('descricao')): ?> - <?php echo get_sub_field('descricao'); endif; ?></li>
+						<li><?php if (get_sub_field('arquivo')): ?><a href="<?php echo esc_url(get_sub_field('arquivo')); ?>" title="<?php echo get_sub_field('descricao') ?>" target="blank"><?php endif; ?><?php echo get_sub_field('nome'); if (get_sub_field('arquivo')): ?></a><?php endif; if(get_sub_field('descricao')): ?> - <?php echo get_sub_field('descricao'); endif; ?></li>
 					<?php endwhile; ?>
 				</ul>
 			<?php endif; ?>

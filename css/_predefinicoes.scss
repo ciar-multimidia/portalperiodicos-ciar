@@ -159,19 +159,22 @@ textarea {
 	margin-top: 15px;
 	padding: 8px 16px;
 	line-height: 1;
-	background: $cor4;
+	background: #fff;
 	font-size: 11px;
 	text-transform: uppercase;
 	color: $cor1;
 	cursor: pointer;
-	border-radius: 5px;
+	border-radius: 0px;
+	border: 2px solid $cor4;
 	font-family: $fonte-padrao;
 	-webkit-appearance: none;
 	letter-spacing: 2px; font-weight: bold;
+	@include transition(background 0.3s ease-in-out);
 
 	&:hover {
 		text-decoration: none;
-		opacity: 0.8;
+		background: $cor4;
+
 	}
 
 	&.claro {

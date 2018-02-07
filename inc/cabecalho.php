@@ -23,6 +23,7 @@
 
 <nav id="navegacao" class="container">
 	<ul>
+	<li class="menu-mobile"><span><i class="fa fa-bars" aria-hidden="true"></i> Menu</span></li>
 	 <?php wp_nav_menu ( array( 
 		'theme_location' => 'menu-topo', 
 		'menu' => 'menu-topo', 

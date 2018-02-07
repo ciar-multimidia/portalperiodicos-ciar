@@ -17,6 +17,7 @@ $fonte-icones: "FontAwesome";
 @import "reset";
 @import "predefinicoes";
 @import "mixins";
+@import "canvas";
 @charset "UTF-8";
 
 /****************************************
@@ -41,6 +42,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+	position: relative;	
 }
 
 
@@ -90,7 +92,7 @@ body {
 			background: #fff;
 			border: 2px solid #fff;
 
-			& > a, .buscaportal {
+			& > a, & > span, .buscaportal {
 				display: inline-block;
 				color: $cor-padrao;
 				padding: 0 15px;
@@ -105,9 +107,11 @@ body {
 				a {color: $cor3;}
 			}
 
+			&.menu-mobile {display: none;}
+
 			&:hover {
 				background: $cor1;
-				& > a, .buscaportal {color: #fff; text-decoration: none;}
+				& > a, & > span, .buscaportal {color: #fff; text-decoration: none;}
 			}
 
 			&:hover .sub-menu {left: -2px; opacity: 1}
@@ -181,13 +185,44 @@ body {
 ////////////////////////////// SLIDER
 #slider {
 	width: 100%;
-	height: 365px;
 	margin: 15px 0 0;
 
 	.container {
-		padding: 0;
-		height: 365px;
+		padding: 0 0 28.5%;
+		height: 0;
+		overflow: hidden;
 		background: $fundo;
+
+		.items-slider {
+			img {width: 100%;}
+		}
+
+		.bx-pager {
+			position: absolute;
+			text-align: center;
+			bottom: 0;
+			width: 100%;
+
+			.bx-pager-item {
+				display: inline-block;
+				margin: 0 5px;
+
+				a {
+					width: 15px; height: 15px;
+					background: $cor1;
+					border: 2px solid #fff;
+					border-radius: 50%;
+					overflow: hidden;
+					text-indent: 9999px;
+					line-height: 9999px;
+					display: block;
+
+					&.active {
+						background: $cor4;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -219,22 +254,40 @@ body {
 
 			form {
 				width: 100%;
-				input {
-					width: 100%;
-					margin-top: 0;
-					border-radius: 10px;
-					border: 4px solid darken($cor4,8%);
-					color: $cor-padrao;
-					font-size: 1.3em;
-					padding: 10px 20px;
+				border-radius: 10px;
+				background: #fff;
+				padding: 8px;
+				position: relative;
+				border: 4px solid darken($cor4,8%);
+				@include flex(space-between);
+				@include flex-wrap(nowrap);
 
-					&[type=submit] {display: none;}
+				input[type="text"] {
+					margin-top: 0;
+					background: transparent;
+					color: $cor-padrao;
+					border: 0;
+					padding: 0 10px;
+					font-size: 1.3em;
+					width: calc(100% - 75px);
+				}
+
+				input[type="submit"] {
+					margin-top: 0;
+					background: $cor1 url('../img/lupa.svg') no-repeat center center / 22px;
+					width: 70px;
+					border: 0;
+					height: 40px;
+					border-radius: 5px;
+					overflow: hidden;
+					text-indent: 9999px;
+					line-height: 9999px;
+					display: block;
 				}
 			}
 
 			a.avancada {
 				display: inline-block;
-				
 				color: $cor1;
 				font-style: italic;
 				text-decoration: underline;
@@ -481,6 +534,8 @@ body {
     @extend %letterspacing;
     font-weight: bold;
 
+    & > a {text-decoration: underline; color: darken($cor4,10%);}
+
 	li, ul {display: inline-block; list-style-type: none;}
 	li {
 		&:after {
@@ -521,7 +576,8 @@ body {
 		& > div {@include align-self(center);}
 		
 		.info {
-			width: 60%;
+			width: calc(100% - 200px);
+			font-size: 0.9em;
 			h3 {color: inherit;}
 			p {margin-bottom: 0;}
 		}

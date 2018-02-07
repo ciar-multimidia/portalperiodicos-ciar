@@ -156,6 +156,10 @@ function estilos_scripts() {
   wp_enqueue_style('googlefonts', '//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|Yanone+Kaffeesatz:400,700', array(), '' , 'screen', false);
   wp_enqueue_style('fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '' , 'screen', false);
   wp_enqueue_style('layout', get_template_directory_uri() . '/css/layout.css', array(), '', 'all', null);
+
+  wp_enqueue_script( 'canvas', get_template_directory_uri() . '/js/canvas.js', array('jquery'), '', true);
+  wp_enqueue_script( 'bx', get_template_directory_uri() . '/js/bx.js', array('jquery'), '', true);
+  wp_enqueue_script( 'scripts', get_template_directory_uri() . '/js/scripts.js', array('bx'), '', true);
 } 
 
 

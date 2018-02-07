@@ -4,6 +4,12 @@
 }
 
 @media (max-width: 800px) {
+	#navegacao > ul > li {
+		&.menu-mobile {display: inline-block;}
+		&.menu-item {display: none;}
+	}
+
+	.boxes.col4 .box { width: calc(50% - 30px); }
 
 }
 

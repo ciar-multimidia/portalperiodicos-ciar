@@ -6,6 +6,27 @@
 </head>
 <body <?php body_class(); ?>>
 
+<div class="canvas">
+	<ul>
+	 <?php wp_nav_menu ( array( 
+		'theme_location' => 'menu-topo', 
+		'menu' => 'menu-topo', 
+		'container' => '', 
+		'container_class' => '', 
+		'container_id' => '', 
+		'menu_class' => '', 
+		'menu_id' => '', 
+		'echo' => true, 
+		'fallback_cb' => 'wp_page_menu', 
+		'before' => '', 
+		'after' => '', 
+		'items_wrap' => '%3$s', 
+		'depth' => 0, 
+		'walker' => ''
+	)); ?>	
+	</ul>
+</div>
+
 <main>
 
 <?php get_template_part('inc/cabecalho'); ?>
