@@ -31,7 +31,7 @@ del {
 	display: none
 }
 // espacamento entre formatacoes de conteudo
-p, ul, ol, .wp-block-cover-image, .wp-block-image, .video {
+p, ul, ol, .wp-block-cover-image, .wp-block-image, .video, table, hr {
 	margin: 0 0 26px;
 }
 
@@ -46,43 +46,18 @@ h1, h2, h3, h4, h5 {
 	font-weight: bold;
 	display: block;
 	color: $cor1;
+
+	a {
+		color: inherit !important;
+		text-decoration:none !important;
+	}
 }
 
-h1 {
-	font-size: 2.2em;
-	a {
-		color: inherit !important;
-		text-decoration:none !important;
-	}
-}
-h2 {
-	font-size: 1.7em;
-	a {
-		color: inherit !important;
-		text-decoration:none !important;
-	}
-}
-h3 {
-	font-size: 1.4em;
-	a {
-		color: inherit !important;
-		text-decoration:none !important;
-	}
-}
-h4 {
-	font-size: 1.25em;
-	a {
-		color: inherit !important;
-		text-decoration:none !important;
-	}
-}
-h5 {
-	font-size: 1em;
-	a {
-		color: inherit !important;
-		text-decoration:none !important;
-	}
-}
+h1 {font-size: 2.2em;}
+h2 {font-size: 1.7em;}
+h3 {font-size: 1.4em;}
+h4 {font-size: 1.25em;}
+h5 {font-size: 1em;}
 
 // quote
 blockquote {
@@ -90,6 +65,31 @@ blockquote {
 	font-style: italic;
 }
 
+
+// tbelas
+table {
+	width: 100%;
+	border: 1px solid $cor1;
+
+	tr {
+		border-top: 1px solid $cor1;
+
+		th {
+			background: $cor1;
+			color: desaturate(lighten($cor4,28%),25%);
+			font-weight: bold; 
+		}
+
+		td {
+			border-left: 1px solid $cor1;
+		}
+	}
+
+	th, td {
+		padding: 3px 6px;
+		p {margin: 0;}
+	}
+}
 
 // video
 .video {

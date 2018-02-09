@@ -2,12 +2,12 @@
 	<div class="barra-superior">
 		<div class="container">
 			<?php if( have_rows('cabecalho', 'option') ): while( have_rows('cabecalho', 'option') ): the_row(); ?>
-				<?php if(get_sub_field('portal_ufg') == 1 ): ?><a href="http://www.ufg.br" target="_blank">Portal da Universidade Federal de Goiás</a><?php endif; ?>
+				<?php if(get_sub_field('portal_ufg') == 1 ): ?><a href="http://www.ufg.br" target="_blank">Portal da <span class="desk">Universidade Federal de Goiás</span><span class="mob">UFG</span></a><?php endif; ?>
 
 				<?php if( have_rows('social') ): ?>
 				<div class="redes">
 					<?php while( have_rows('social') ): the_row(); ?>
-					<a href="<?php echo get_sub_field('link'); ?>"><i class="fa <?php echo get_sub_field('icone'); ?>" aria-hidden="true"></i> <span><?php echo get_sub_field('nome'); ?></span></a>
+					<a href="<?php echo get_sub_field('link'); ?>"><i class="fa <?php echo get_sub_field('icone'); ?>" aria-hidden="true"></i><span> <?php echo get_sub_field('nome'); ?></span></a>
 					<?php endwhile; ?>
 				</div>
 				<?php endif; ?>
@@ -40,6 +40,6 @@
 		'depth' => 0, 
 		'walker' => ''
 	)); ?>	
-	<li><div class="buscaportal"><?php echo get_search_form(); ?><i class="fa fa-search" aria-hidden="true"></i></a></div></li>
+	<li class="menu-busca"><div class="buscaportal"><?php echo get_search_form(); ?><i class="fa fa-search" aria-hidden="true"></i></a></div></li>
 	</ul>
 </nav>

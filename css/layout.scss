@@ -60,7 +60,16 @@ body {
 		.container {
 			@include flex(space-between);
 
-			a {color: inherit;}
+			a {
+				color: inherit;
+
+				&:hover {
+					span {text-decoration: underline;}
+				}
+			}
+
+			span.desk {display: inline-block;}
+			span.mob {display: none;}
 
 			.redes {
 				a {margin-left: 6px;}
@@ -70,7 +79,7 @@ body {
 
 	a.marca {
 		width: 382px; height: 120px;
-		background: url('../img/marca.png') no-repeat center center;
+		background: url('../img/marca.png') no-repeat center center / contain;
 		display: block;
 		margin: 45px auto;
 	}
@@ -240,6 +249,8 @@ body {
 	}
 
 	.container {
+		padding: 0;
+
 		h1 {
 			width: 100%;
 			text-align: center;

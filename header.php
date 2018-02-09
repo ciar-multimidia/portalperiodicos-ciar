@@ -25,6 +25,7 @@
 		'walker' => ''
 	)); ?>	
 	</ul>
+	<?php echo get_search_form(); ?>
 </div>
 
 <main>
