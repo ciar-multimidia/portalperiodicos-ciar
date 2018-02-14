@@ -58,7 +58,7 @@
 	} elseif ( has_post_format('aside') ) { // listagem de downloads de editais
 
 		if( have_rows('grupo_download') ): while( have_rows('grupo_download') ): the_row(); ?>
-			<h5><?php echo get_sub_field('titulo');  ?></h5>
+			<h5 class="divisoria"><?php echo get_sub_field('titulo');  ?></h5>
 			<?php if( have_rows('downloads') ): ?>
 				<ul>
 					<?php while( have_rows('downloads') ): the_row(); ?>

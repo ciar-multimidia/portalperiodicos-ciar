@@ -1,6 +1,13 @@
 @media (max-width: 1120px) {
 	.container { width: 100%; }
 
+	#slider .container {
+		padding: 0 0 32.5%;
+		height: 0;
+		max-height: 0;
+	}
+
+
 }
 
 @media (max-width: 800px) {

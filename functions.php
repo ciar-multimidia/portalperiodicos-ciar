@@ -209,7 +209,7 @@ function mostra_taxonomia($tax,$sentido) {
 
         $query = new WP_Query($args);
                            
-        echo'<h4 class="titulo-taxonomia">' . $term->name . '</h4>';
+        echo'<h4 class="divisoria titulo-taxonomia">' . $term->name . '</h4>';
          
         while ( $query->have_posts() ) : $query->the_post(); 
           if( have_rows('revista_informacoes') ): while( have_rows('revista_informacoes') ): the_row();
@@ -385,9 +385,9 @@ function navegacao_paginas_internas() {
   $parent_link = get_the_permalink($parent_post);
    
   if ( is_page() && $post->post_parent )
-      $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0' );
+      $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0&depth=1' );
   else
-      $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
+      $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0&depth=1' );
 
   if ( $childpages ) {
       $string = '<div class="navegacao-interna">Mais sobre <a href="'.$parent_link.'">'.$parent_name.'</a>:&nbsp; '.$childpages.'</div>';

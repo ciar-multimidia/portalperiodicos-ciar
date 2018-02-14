@@ -52,9 +52,9 @@ body {
 	
 	.barra-superior {
 		width: 100%;
-		background: $cor1 url('../img/pattern.gif') repeat-x center bottom;
+		background: $cor1 url('../img/pattern.gif') repeat-x center bottom / 31px 14px;
 		color: desaturate(lighten($cor4,28%),25%);
-		padding: 12px 0 16px;
+		padding: 12px 0 30px;
 		font-size: 0.9em;
 		
 		.container {
@@ -197,13 +197,18 @@ body {
 	margin: 15px 0 0;
 
 	.container {
-		padding: 0 0 28.5%;
-		height: 0;
+		// padding: 0 0 28.5%;
+		// height: 0;
+		width: 100%;
+		padding: 0;
+		max-width: 1120px;
+		max-height: 365px;
 		overflow: hidden;
 		background: $fundo;
 
 		.items-slider {
-			img {width: 100%;}
+			a {display: block;}
+			img {width: 100%; vertical-align: bottom;}
 		}
 
 		.bx-pager {
@@ -240,11 +245,10 @@ body {
 #buscaojs {
 	width: 100%;
 	padding: 30px;
-	// background: url('../img/pattern.gif') repeat-x center bottom, url('../img/pattern.gif') repeat-x center top, lighten(desaturate($cor4,10%),8%);
 	background: lighten(desaturate($cor4,10%),8%);
 
 	&.paginternas {
-		background: lighten(desaturate($cor4,10%),8%) url('../img/pattern2.gif') repeat-x center top;
+		// background: lighten(desaturate($cor4,10%),8%) url('../img/pattern2.gif') repeat-x center top;
 		margin-top: 80px;
 	}
 
@@ -465,6 +469,7 @@ body {
 			width: 100%;
 			height: 220px;
 			margin-bottom: 15px;
+			background-color: $fundo;
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-position: center center;
@@ -499,7 +504,13 @@ body {
 
 
 ////////////////////////////// LISTAGEM REVISTA
-.titulo-taxonomia {margin-top: 30px; margin-bottom: 20px; font-weight: bold;}
+.titulo-taxonomia {
+	margin-top: 40px; 
+	margin-bottom: 20px; 
+	font-weight: bold;
+	border-bottom: 1px solid $cor3;
+}
+
 .revista {
 	width: 100%; margin-bottom: 25px;
 	@include flex(space-between);
@@ -571,12 +582,12 @@ body {
 
 ////////////////////////////// RODAPE
 #rodapesite {
-	background: $cor1 url('../img/pattern.gif') repeat-x center top;
+	background: $cor1;
 	color: desaturate(lighten($cor4,28%),25%);
 
-	&.paginternas {
-		background: $cor1;
-	}
+	// &.paginternas {
+	// 	background: $cor1;
+	// }
 
 	.container {
 		padding-top: 20px;
