@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
     maxSlides: 1,
     minSlides: 1,
     auto: true,
-    autoHover: false,
-    pause: 2500
+    autoHover: true,
+    pause: 4500
   });
 });

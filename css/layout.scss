@@ -625,6 +625,16 @@ body {
 		}
 	}
 }
+
+
+////////////////////////////// FORMULARIO CONTACT FORM 7
+.wpcf7-form {
+	input {
+		margin-top: 0; width: 400px; max-width: 100%;
+
+		&[type=submit] {width: auto;}
+	}
+}
 		
 
 /****************************************
