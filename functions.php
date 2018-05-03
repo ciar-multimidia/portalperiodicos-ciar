@@ -59,14 +59,17 @@ function custom_menus(){
   $menu[10][0] = 'Biblioteca mídia';
   $menu[20][0] = 'Páginas internas';
 
-  unset($submenu['themes.php'][6]); // remove customize
-  unset($submenu['themes.php'][8]); // remove editor
+  if (! current_user_can('administrator')) {
+    unset($submenu['themes.php'][6]); // remove customize
+    unset($submenu['themes.php'][8]); // remove editor
 
-  remove_menu_page('tools.php');
-  remove_submenu_page('themes.php','theme-editor.php');
-  remove_submenu_page('edit.php?post_type=ciarpainel','post-new.php?post_type=ciarpainel');
-  
-  // remove_menu_page( 'edit.php?post_type=acf-field-group' );  // Advance custom fields 
+    remove_menu_page('edit-comments.php');
+    remove_menu_page('tools.php');
+    remove_submenu_page('themes.php','theme-editor.php');
+
+    remove_menu_page( 'edit.php?post_type=page' );
+    remove_menu_page( 'edit.php?post_type=acf-field-group' );
+  }
 }
 add_action( 'admin_menu', 'custom_menus', 999 );
 
