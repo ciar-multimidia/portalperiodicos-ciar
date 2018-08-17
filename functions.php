@@ -7,6 +7,17 @@
 add_action( 'after_setup_theme', 'setup_theme' );
 function setup_theme() {
 
+    if( function_exists('acf_add_options_page') ) {
+      acf_add_options_page(array(
+        'page_title'  => 'Gestão de informações gerais do site',
+        'menu_title'  => 'Painel do Site',
+        'menu_slug'   => 'opcoes-site',
+        'capability'  => 'edit_posts',
+        'position'    => 3,
+        'redirect'    => false
+      ));      
+    }
+
     // thumbnails
     add_theme_support( 'post-thumbnails' );
 
@@ -80,22 +91,6 @@ function remover_personalizar() {
 }
 add_action( 'wp_before_admin_bar_render', 'remover_personalizar' );
 
-
-// ========================================//
-// OPCOES ADMIN
-// ========================================// 
-if( function_exists('acf_add_options_page') ) {
-  
-  acf_add_options_page(array(
-    'page_title'  => 'Gestão de informações gerais do site',
-    'menu_title'  => 'Painel do Site',
-    'menu_slug'   => 'opcoes-site',
-    'capability'  => 'upload_plugins',
-    'position'    => 3,
-    'redirect'    => false
-  ));
-  
-}
 
 
 // ========================================//
